@@ -1,5 +1,7 @@
 # Python API
 
+This repo contains a Dockerized flask app that is part of a many pods in a Kubernetes cluster
+
 
 ## Functions
 
