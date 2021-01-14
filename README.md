@@ -2,17 +2,15 @@
 
 This repo contains a Dockerized flask app that is part of a many pods in a Kubernetes cluster
 
-
 ## Functions
 
 **machine Learning**
 
 **Scraping websites**
 
-**Sending data to Jmy ava API**
+**Sending data to my Java API**
 
 ## Installation
-
 
 build docker image
 
