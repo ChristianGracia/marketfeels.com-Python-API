@@ -3,15 +3,19 @@
 
 ## Functions
 
+**machine Learning**
 
+**Scraping websites**
 
+**Sending data to Jmy ava API**
 
-Sending Data
+## Installation
+
 
 build docker image
 
-`docker build -t stock-site-back-end .`
+`docker build -t stock-site-python-api .`
 
 run docker container
 
-`docker container run --publish 8080:8080 --detach stock-site-back-end`
+`docker container run --publish 8080:8080 --detach stock-site-python-api
