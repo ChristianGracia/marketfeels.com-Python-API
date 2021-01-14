@@ -20,4 +20,4 @@ build docker image
 
 run docker container
 
-`docker container run --publish 8080:8080 --detach stock-site-python-api
+`docker container run --publish 8080:8080 --detach stock-site-python-api`
