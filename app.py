@@ -10,10 +10,10 @@ load_dotenv()
 app = Flask(__name__)
 app.register_blueprint(reddit_api, url_prefix='/reddit') 
 
-# engine = create_engine("postgresql://user:password@localhost:5432/test-db")
-# db = scoped_session(sessionmaker(bind=engine))
+engine = create_engine("postgresql://user:password@localhost:5432/test-db")
+db = scoped_session(sessionmaker(bind=engine))
 
-# print("connected to the db!")
+print("connected to the db!")
 
 @app.route('/')
 def temp_route():
