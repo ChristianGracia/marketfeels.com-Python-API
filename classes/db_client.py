@@ -41,7 +41,7 @@ class DbClient():
         cursor.execute("SELECT reddit_id FROM posts WHERE reddit_id = %s", (reddit_id,))
         return cursor.fetchone() is not None
 
-    def log_databse_details(self):
+    def log_database_details(self):
 
         try:
             cursor = self.db_connection.cursor()

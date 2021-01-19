@@ -11,11 +11,9 @@ reddit_api = Blueprint('reddit_api', __name__)
 def get_posts():
     
     reddit_crawler = RedditCrawler(os.getenv('client_id'), os.getenv('client_secret'), os.getenv('user_agent'))
-
     submissions = reddit_crawler.stream_subreddits(os.getenv('subreddits'))
     
     return "stream complete"
-
 
 class JSONObject:  
   def __init__( self, dict ):  

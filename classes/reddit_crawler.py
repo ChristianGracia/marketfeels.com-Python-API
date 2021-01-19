@@ -27,18 +27,3 @@ class RedditCrawler():
                 subreddit=str(submission.subreddit), reddit_id=submission.id, created_utc=submission.created_utc,
                 author=submission.author, post_url=submission.url
                 )
-
-            # print("title: " + submission.title)
-            # print("subreddit: " + str(submission.subreddit))
-            # print("description: " + post.selftext)
-            # print("comment: " + post.comments)
-            #     print("likes: " + post.likes)
-            #     print("category: " + post.category)
-            #     print("viewcount: " + post.view_count)
-            #     print("score: " + str(post.score))
-            #     if post.selftext_html is not None:
-            #         print("selftext_html: " + post.selftext_html)
-            #     print("id: " + post.id)
-            #     print("created_utc: " + str(post.created_utc))
-            #     print("discussion_type: " + post.discussion_type)
-            #     print("author: " + post.author)
