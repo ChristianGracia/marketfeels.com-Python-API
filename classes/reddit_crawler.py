@@ -1,4 +1,6 @@
 import praw
+import os
+from classes.db_client import DbClient
 
 class RedditCrawler():
     crawler = None
@@ -10,11 +12,15 @@ class RedditCrawler():
         return self.crawler
 
     def stream_subreddits(self, subreddits):
-        print(subreddits)
+
+        client = DbClient(os.getenv('postgres_user'), os.getenv('postgres_password'), os.getenv('postgres_path'), os.getenv('postgres_port'), os.getenv('postgres_db'))
+
+        print("Searching reddit for these " + subreddits.split("+").join(" "))
+
         stream = self.crawler.subreddit(subreddits).stream.submissions()
-        # for submission in stream:
-        #    print("title: " + submission.title)
-        #    print("title: " + str(submission.subreddit))
+        for submission in stream:
+           print("title: " + submission.title)
+           print("title: " + str(submission.subreddit))
 
     
         #     print("description: " + post.selftext)

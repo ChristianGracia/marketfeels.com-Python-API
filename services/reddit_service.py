@@ -19,32 +19,7 @@ def get_posts():
     #submissions = reddit_crawler.subreddit('wallstreetbets').new(limit=20) 
 
     submissions = reddit_crawler.stream_subreddits(os.getenv('subreddits'))
-
-
-    # lists = []
-    # for post in hot_posts:
-    #     mini_list = []
-    #     mini_list.append("title: " + post.title)
-    #     mini_list.append("description: " + post.selftext)
-    #     #mini_list.append("comment: " + post.comments)
-    #     #mini_list.append("likes: " + post.likes)
-    #     #mini_list.append("category: " + post.category)
-    #     #mini_list.append("viewcount: " + post.view_count)
-    #     mini_list.append("score: " + str(post.score))
-    #     if post.selftext_html is not None:
-    #         mini_list.append("selftext_html: " + post.selftext_html)
-    #     mini_list.append("id: " + post.id)
-    #     mini_list.append("created_utc: " + str(post.created_utc))
-    #     #mini_list.append("discussion_type: " + post.discussion_type)
-    #     #mini_list.append("author: " + post.author)
-        
-    #     lists.append(mini_list)
-    #     print(dir(post))
-
-    # return_string = ""
-
-    # for list in lists:
-    #     return_string += "[" + ", ".join(list) + "]"
+    
     return "return_string"
 
 

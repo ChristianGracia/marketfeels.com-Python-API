@@ -18,7 +18,7 @@ def db_init():
 db_init()
 
 @app.route('/')
-def temp_route():
+def main():
     return 'Marketfeels.com Python API'
 
 if __name__ == '__main__':
