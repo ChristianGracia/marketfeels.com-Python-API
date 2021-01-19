@@ -1,10 +1,10 @@
 from flask import Flask, json
 from dotenv import load_dotenv
-import psycopg2
-from psycopg2 import Error
+
 import os
 
-from services.reddit_service import reddit_api  
+from services.reddit_service import reddit_api
+from classes.db_client import DbClient
 
 load_dotenv() 
 
@@ -12,36 +12,14 @@ app = Flask(__name__)
 app.register_blueprint(reddit_api, url_prefix='/reddit')
 
 def db_init():
-    try:
-        connection = psycopg2.connect(
-            user=os.getenv('postgres_user'),
-            password=os.getenv('postgres_password'),
-            host="localhost",
-            port="5432",
-            database=os.getenv('postgres_db'))
+    client = DbClient(os.getenv('postgres_user'), os.getenv('postgres_password'), os.getenv('postgres_path'), os.getenv('postgres_port'), os.getenv('postgres_db'))
+    client.log_databse_details()
 
-        cursor = connection.cursor()
-
-        print("PostgreSQL server information")
-        print(connection.get_dsn_parameters(), "\n")
-        cursor.execute("SELECT version();")
-        record = cursor.fetchone()
-        print("You are connected to - ", record, "\n")
-    except (Exception, Error) as error:
-        print("Error while connecting to PostgreSQL", error)
-    finally:
-        if (connection):
-            cursor.close()
-            connection.close()
-            print("PostgreSQL connection Sucessful and is now closed")
-
-# db_init()
-
-print("connected to the db!")
+db_init()
 
 @app.route('/')
 def temp_route():
-    return 'coming soon!'
+    return 'Marketfeels.com Python API'
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=5000)
