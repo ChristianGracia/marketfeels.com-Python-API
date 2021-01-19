@@ -1,12 +1,14 @@
 CREATE TABLE posts (
-	id_num serial PRIMARY KEY,
-	post_name VARCHAR ( 50 ) UNIQUE NOT NULL,
-	post_details VARCHAR ( 1000 ) NOT NULL,
-	post_id VARCHAR ( 70 ) UNIQUE NOT NULL,
-	created_on TIMESTAMP NOT NULL
+	id serial PRIMARY KEY,
+	title VARCHAR ( 50 ) UNIQUE NOT NULL,
+	subreddit VARCHAR ( 50 ) NOT NULL,
+	post_description VARCHAR ( 1000 ) NOT NULL,
+	reddit_id VARCHAR ( 60 ) UNIQUE NOT NULL,
+	created_utc TIMESTAMP NOT NULL,
+	author VARCHAR ( 40 ) UNIQUE NOT NULL
 );
 
-INSERT INTO posts (post_name, post_details, post_id, created_on)
-VALUES ('Cardinal', 'Tom B. Erichsen', 'Skagen 21', '2020-01-01 10:10:10+05:30');
+INSERT INTO posts (title, subreddit, post_description, reddit_id, created_utc, author)
+VALUES ('Cardinal', 'Pennystocks', 'dededededededede 21', '2121212', '2020-01-01 10:10:10+05:30', 'cg');
 
 select * from posts;

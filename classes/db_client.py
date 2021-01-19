@@ -16,6 +16,17 @@ class DbClient():
             
         except (Exception, Error) as error:
             print("Error while instantiating PostgreSQL class instance", error)
+
+    def insert_reddit_submission(self, title, post_description, subreddit, reddit_id, created_utc, author):
+
+        cursor = self.db_connection.cursor()
+
+        cursor.execute("""
+        INSERT INTO posts (title, subreddit, post_description, reddit_id, created_utc, author)
+        VALUES (%s, %s, %s, %s, %s, %s);
+        """,
+        ('Cardinal', 'Pennystocks', 'dededededededede 21', '2121212', '2020-01-01 10:10:10+05:30', 'cg');)
+
         
 
     def log_databse_details(self):
