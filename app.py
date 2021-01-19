@@ -1,10 +1,10 @@
 from flask import Flask, json
 from dotenv import load_dotenv
-from services.reddit_service import reddit_api  
 import psycopg2
 from psycopg2 import Error
 import os
 
+from services.reddit_service import reddit_api  
 
 load_dotenv() 
 
@@ -44,5 +44,5 @@ def temp_route():
     return 'coming soon!'
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=8080)
+    app.run(host='0.0.0.0',port=5000)
     
