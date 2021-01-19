@@ -35,7 +35,7 @@ def db_init():
             connection.close()
             print("PostgreSQL connection Sucessful and is now closed")
 
-db_init()
+# db_init()
 
 print("connected to the db!")
 

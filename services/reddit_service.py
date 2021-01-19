@@ -2,8 +2,9 @@ from flask import Blueprint
 from flask import Flask, abort, request, jsonify  
 import json  
 from flask import jsonify
+from classes.reddit_crawler import RedditCrawler
 
-import praw
+
 import os
 
 from dotenv import load_dotenv
@@ -12,9 +13,10 @@ reddit_api = Blueprint('reddit_api', __name__)
 
 @reddit_api.route('/posts') 
 def get_posts():
-    reddit = praw.Reddit(client_id = os.getenv('client_id'), client_secret = os.getenv('client_secret'), user_agent = os.getenv('user_agent'))
-
-    hot_posts = reddit.subreddit('wallstreetbets').new(limit=20) 
+    
+    reddit_crawler = RedditCrawler(os.getenv('client_id'), os.getenv('client_secret'), os.getenv('user_agent')).get_crawler()
+    
+    hot_posts = reddit_crawler.subreddit('wallstreetbets').new(limit=20) 
 
     lists = []
     for post in hot_posts:
@@ -41,6 +43,12 @@ def get_posts():
     for list in lists:
         return_string += "[" + ", ".join(list) + "]"
     return return_string
+
+def get_posts():
+    for submission in reddit.multireddit("bboe", "games").stream.submissions():
+        print(submission)
+
+
 
 class JSONObject:  
   def __init__( self, dict ):  
