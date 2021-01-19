@@ -25,7 +25,7 @@ class RedditCrawler():
             client.insert_reddit_submission(
                 title=submission.title, post_description=submission.selftext, 
                 subreddit=str(submission.subreddit), reddit_id=submission.id, created_utc=submission.created_utc,
-                author=submission.author
+                author=submission.author, post_url=submission.url
                 )
 
             # print("title: " + submission.title)

@@ -20,18 +20,14 @@ class DbClient():
         except (Exception, Error) as error:
             print("Error while instantiating PostgreSQL class instance", error)
 
-    def insert_reddit_submission(self, title, post_description, subreddit, reddit_id, created_utc, author):
+    def insert_reddit_submission(self, title, post_description, subreddit, reddit_id, created_utc, author, post_url):
 
         cursor = self.db_connection.cursor()
 
         if not self.check_if_post_in_db(cursor, reddit_id):
-
-         
-            
-            post_description = (post_description[:995] + '..') if len(post_description) > 999 else post_description
   
-            SQL = 'INSERT INTO posts (title, subreddit, post_description, reddit_id, created_utc, author, insert_timestamp) VALUES (%s, %s, %s, %s, %s, %s, %s);'
-            data = ("hi", "deded", subreddit, reddit_id, datetime.utcfromtimestamp(created_utc), str(author).strip()[:40], datetime.utcfromtimestamp(time.time()))  
+            SQL = 'INSERT INTO posts (title, subreddit, post_description, reddit_id, created_utc, author, post_url, insert_timestamp) VALUES (%s, %s, %s, %s, %s, %s, %s, %s);'
+            data = (title[:150], subreddit, post_description[:997] + "...", reddit_id, datetime.utcfromtimestamp(created_utc), str(author)[:40], post_url, datetime.utcfromtimestamp(time.time()))  
             cursor.execute(SQL, data)
             self.db_connection.commit()
             print("submission successful")
