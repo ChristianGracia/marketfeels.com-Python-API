@@ -24,31 +24,21 @@ class DbClient():
 
         cursor = self.db_connection.cursor()
 
-        post_description = (post_description[:997] + '..') if len(post_description) > 999 else post_description
+        if not self.check_if_post_in_db(cursor, reddit_id):
 
-        print("before")
+         
+            
+            post_description = (post_description[:995] + '..') if len(post_description) > 999 else post_description
+  
+            SQL = 'INSERT INTO posts (title, subreddit, post_description, reddit_id, created_utc, author, insert_timestamp) VALUES (%s, %s, %s, %s, %s, %s, %s);'
+            data = ("hi", "deded", subreddit, reddit_id, datetime.utcfromtimestamp(created_utc), str(author).strip()[:40], datetime.utcfromtimestamp(time.time()))  
+            cursor.execute(SQL, data)
+            self.db_connection.commit()
+            print("submission successful")
+        else:
+            print("Post found but it was already in the database.")
 
-        # print(title)
-        # print(len(title))
-        # print(post_description.strip())
-        # print(len(post_description.strip()))
-        # print(reddit_id)
-        # print(datetime.utcfromtimestamp(created_utc))
-        # print(str(author).strip())
-        # print(len(str(author).strip()))
-        # print(datetime.utcfromtimestamp(time.time()))
-        print(self.check_if_post_in_db(cursor, reddit_id))
-
-
-
-        # SQL = 'INSERT INTO posts (title, subreddit, post_description, reddit_id, created_utc, author, insert_timestamp) VALUES (%s, %s, %s, %s, %s, %s, %s);'
-        # #data = ("hi", post_description.strip()[:500], "penny", reddit_id, datetime.utcfromtimestamp(created_utc), str(author).strip()[:40], datetime.utcfromtimestamp(time.time()))  
-        # data = ("hi", post_description, "penny", reddit_id, datetime.utcfromtimestamp(created_utc), str(author).strip()[:40], datetime.utcfromtimestamp(time.time()))  
-        # cursor.execute(SQL, data)
-        # self.db_connection.commit()
         cursor.close()
-
-        print("submission successful")
         
     def check_if_post_in_db(self, cursor, reddit_id):
 

@@ -14,7 +14,7 @@ def get_posts():
 
     submissions = reddit_crawler.stream_subreddits(os.getenv('subreddits'))
     
-    return "stream running"
+    return "stream complete"
 
 
 class JSONObject:  
