@@ -19,3 +19,22 @@ build docker image
 run docker container
 
 `docker container run --publish 8080:8080 --detach stock-site-python-api`
+
+
+
+## Google GKE
+
+
+build
+
+`docker build -t py-api .`
+
+tag
+
+`docker tag py-api us.gcr.io/marketfeels/py-api:latest`
+
+pusuh
+
+`docker push us.gcr.io/marketfeels/py-api`
+
+push
